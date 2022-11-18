@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button/index";
-import style from './Form.module.scss'
+import style from "./Form.module.scss";
 
 const Form: React.FC = () => {
   return (
@@ -27,7 +27,7 @@ const Form: React.FC = () => {
           required
         />
       </div>
-      <Button />
+      <Button>Adicionar</Button>
     </form>
   );
 };
