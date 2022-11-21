@@ -1,15 +1,11 @@
+import { Task } from "../../../types/index.js";
 import style from "../List.module.scss";
 
-interface Props {
-  name: string;
-  time: string;
-}
-
-const Item: React.FC<Props> = (props: Props) => {
+const Item: React.FC<Task> = (task: Task) => {
   return (
     <li className={style.item}>
-      <h3>{props.name}</h3>
-      <span>{props.time}</span>
+      <h3>{task.name}</h3>
+      <span>{task.time}</span>
     </li>
   );
 };
