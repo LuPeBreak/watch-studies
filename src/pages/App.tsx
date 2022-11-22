@@ -9,13 +9,24 @@ import style from "./App.module.scss";
 function App() {
   const [tasks, setTasks] = useState<Task[] | []>([]);
 
+  const [selected, setSelected] = useState<Task>();
+  function handleSelectTask(selectedTask: Task) {
+    setSelected(selectedTask);
+    setTasks((oldTasks) =>
+      oldTasks.map((task) => ({
+        ...task,
+        selected: task.id === selectedTask.id ? true : false,
+      }))
+    );
+  }
+
   function handleAddTask(task: Task) {
     setTasks([...tasks, task]);
   }
   return (
     <div className={style.AppStyle}>
       <Form handleAddTask={handleAddTask} />
-      <List tasks={tasks} />
+      <List tasks={tasks} handleSelectTask={handleSelectTask} />
       <Stopwatch />
     </div>
   );
