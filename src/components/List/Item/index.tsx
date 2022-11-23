@@ -1,5 +1,5 @@
 import { Task } from "../../../types/index.js";
-import style from "../List.module.scss";
+import style from "./Item.module.scss";
 
 interface Props {
   task: Task;
