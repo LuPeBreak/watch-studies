@@ -8,9 +8,10 @@ import { useEffect, useState } from "react";
 
 interface Props {
   selected: Task | undefined;
+  handleEndTask: () => void;
 }
 
-const Stopwatch: React.FC<Props> = ({ selected }: Props) => {
+const Stopwatch: React.FC<Props> = ({ selected, handleEndTask }: Props) => {
   const [time, setTime] = useState<number>();
 
   useEffect(() => {
@@ -19,13 +20,23 @@ const Stopwatch: React.FC<Props> = ({ selected }: Props) => {
     }
   }, [selected]);
 
+  function regressiveTimeCount(counter: number = 0) {
+    setTimeout(() => {
+      if (counter > 0) {
+        setTime(counter - 1);
+        return regressiveTimeCount(counter - 1);
+      }
+      handleEndTask()
+    }, 1000);
+  }
+
   return (
     <div className={style.stopwatch}>
       <p className={style.title}>Escolha um card e inicie o cronômetro</p>
       <div className={style.watchWrapper}>
-        <Watch />
+        <Watch time={time} />
       </div>
-      <Button>Começar!</Button>
+      <Button onClick={() => regressiveTimeCount(time)}>Começar!</Button>
     </div>
   );
 };

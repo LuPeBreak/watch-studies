@@ -10,6 +10,7 @@ function App() {
   const [tasks, setTasks] = useState<Task[] | []>([]);
 
   const [selected, setSelected] = useState<Task>();
+
   function handleSelectTask(selectedTask: Task) {
     setSelected(selectedTask);
     setTasks((oldTasks) =>
@@ -23,11 +24,26 @@ function App() {
   function handleAddTask(task: Task) {
     setTasks([...tasks, task]);
   }
+
+  function handleEndTask() {
+    if (selected) {
+      setTasks((oldTasks) =>
+        oldTasks.map((task) => {
+          if (task.id === selected.id) {
+            return { ...task, selected: false, completed: true };
+          }
+          return task;
+        })
+      );
+      setSelected(undefined);
+    }
+  }
+
   return (
     <div className={style.AppStyle}>
       <Form handleAddTask={handleAddTask} />
       <List tasks={tasks} handleSelectTask={handleSelectTask} />
-      <Stopwatch selected={selected} />
+      <Stopwatch handleEndTask={handleEndTask} selected={selected} />
     </div>
   );
 }

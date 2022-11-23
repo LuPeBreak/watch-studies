@@ -9,11 +9,16 @@ interface Props {
 const Item: React.FC<Props> = ({ task, handleSelectTask }: Props) => {
   return (
     <li
-      className={`${style.item} ${task.selected ? style.selectedItem : ""}`}
-      onClick={() => handleSelectTask(task)}
+      className={`${style.item} ${task.selected ? style.selectedItem : ""} ${task.completed ? style.completedItem : ""}`}
+      onClick={() => {
+        if(!task.completed){
+          handleSelectTask(task)
+        }
+      }}
     >
       <h3>{task.name}</h3>
       <span>{task.time}</span>
+      {task.completed && <span className={style.completed} aria-label="tarefa completada"></span>}
     </li>
   );
 };
