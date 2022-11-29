@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CongratulationsMessage from "../components/CongratulationsMessage/index";
 import Form from "../components/Form/index";
 import List from "../components/List/index";
 import Stopwatch from "../components/stopwatch/index";
@@ -10,6 +11,8 @@ function App() {
   const [tasks, setTasks] = useState<Task[] | []>([]);
 
   const [selected, setSelected] = useState<Task>();
+
+  const [completed, setCompleted] = useState(false);
 
   function handleSelectTask(selectedTask: Task) {
     setSelected(selectedTask);
@@ -36,6 +39,7 @@ function App() {
         })
       );
       setSelected(undefined);
+      setCompleted(true);
     }
   }
 
@@ -44,6 +48,8 @@ function App() {
       <Form handleAddTask={handleAddTask} />
       <List tasks={tasks} handleSelectTask={handleSelectTask} />
       <Stopwatch handleEndTask={handleEndTask} selected={selected} />
+
+      {completed&&<CongratulationsMessage handleSetCompleted={setCompleted} />}
     </div>
   );
 }

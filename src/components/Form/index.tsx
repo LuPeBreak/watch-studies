@@ -9,24 +9,20 @@ interface Props {
 }
 
 const Form: React.FC<Props> = ({ handleAddTask }: Props) => {
-  const [task, setTask] = useState({
+  const defaultTask: Task = {
     name: "",
     time: "00:00",
     selected: false,
     completed: false,
     id: uuidV4(),
-  });
+  };
+
+  const [task, setTask] = useState(defaultTask);
 
   function addTask(event: React.FormEvent) {
     event.preventDefault();
     handleAddTask(task);
-    setTask({
-      name: "",
-      time: "00:00",
-      selected: false,
-      completed: false,
-      id: uuidV4(),
-    });
+    setTask(defaultTask);
   }
 
   return (
