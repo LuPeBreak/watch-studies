@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/watch-studies/static/css/main.69949525.css",
+    "main.js": "/watch-studies/static/js/main.178ec944.js",
+    "static/media/check-mark.svg": "/watch-studies/static/media/check-mark.53f24c0a28e150404896.svg",
+    "index.html": "/watch-studies/index.html",
+    "main.69949525.css.map": "/watch-studies/static/css/main.69949525.css.map",
+    "main.178ec944.js.map": "/watch-studies/static/js/main.178ec944.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.69949525.css",
+    "static/js/main.178ec944.js"
+  ]
+}
